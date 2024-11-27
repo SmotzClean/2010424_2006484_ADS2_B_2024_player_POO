@@ -1,16 +1,14 @@
 <?php
 require_once('Inventario.php');
-require_once('Item.php');
 
 class Player {
-    private string $nickname;
-    private int $nivel;
-    private Inventario $inventario;
+    public string $nickname;
+    public int $nivel = 1;
+    public Inventario $inventario;
 
-    public function __construct(string $nickname, int $nivel = 1, Inventario $inventario){
+    public function __construct(string $nickname){
         $this->setnickname($nickname);
-        $this->setnivel($nivel);
-        $this->setinventario($inventario);
+        $this->inventario = new Inventario(20);
     }
 
     public function getnickname(): string{
@@ -41,8 +39,8 @@ class Player {
         $this->nivel++;
         $aumentoCapacidade = $this->nivel * 3;
         $novaCapacidade = 20 + $aumentoCapacidade;
-
         $this->inventario->setcapacidadeMaxima($novaCapacidade);
+        echo "<strong>O player foi para o nivel: </strong>{$this->getNivel()} <br>";
     }
 
     public function coletarItem(Item $item): void{
