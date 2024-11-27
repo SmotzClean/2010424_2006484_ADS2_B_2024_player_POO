@@ -2,8 +2,8 @@
 require_once('Item.php');
 
 class Inventario{
-    private int $capacidadeMaxima;
-    private array $itens = [];
+    public int $capacidadeMaxima;
+    public array $itens = [];
 
     public function __construct(int $capacidadeMaxima, array $itens = []){
         $this->setcapacidadeMaxima($capacidadeMaxima);
@@ -25,7 +25,7 @@ class Inventario{
     public function adicionarItem(Item $item): void{
         if ($this->capacidadeLivre() >= $item->getTamanho()){
             $this->itens[] = $item;
-            echo"'<strong>{$item->getName()}</strong>' da classe: <strong>{$item->getClasse()}</strong> foi adicionado ao inventário.<br>";
+            echo "'<strong>{$item->getName()}</strong>' da classe: <strong>{$item->getClasse()}</strong> foi adicionado ao inventário.<br>";
         } else {
             echo "<strong>Não há espaço no inventário para adicionar o item:</strong> '{$item->getName()}'.<br>";
         }
@@ -56,4 +56,4 @@ class Inventario{
         }
         return $this->capacidadeMaxima - $tamanhoOcupado;
     }
-}
+}   
